@@ -1,0 +1,20 @@
+{% extends "proj_app/site_base.html" %}
+
+{% block page_title %}
+ Edit Topic
+{% endblock %}
+
+{% block page_heading %}
+  <h1>Edit Topic</h1>
+{% endblock %}
+
+{% block main_body %}
+    <form action="#" method="post" novalidate>
+        {% csrf_token %}
+        <table>
+            {{ myform.as_table }}
+        </table>
+        <input type="submit" name="edit" value="Edit Topic">
+        <input type="submit" name="delete" value="Delete Topic">
+    </form>
+{% endblock %}

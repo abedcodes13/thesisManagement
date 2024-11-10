@@ -1,0 +1,87 @@
+{% extends "proj_app/site_base.html" %}
+
+
+{% block page_title %}
+  Project Details
+{% endblock %}
+
+{% block page_heading %}
+  <h1>Project Details</h1>
+{% endblock %}
+
+
+{% block main_body %}
+    {% if project %}
+        <table>
+            <tbody>
+                <tr>
+                    <th>Title</th>
+                    <td>{{ project.title }}</td>
+                </tr>
+                <tr>
+                    <th>Category</th>
+                    <td>{{ project.catg }}</td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>{{ project.description }}</td>
+                </tr>
+                <tr>
+                    <th>Supervisor</th>
+                    <td>{{ project.supervisor }}</td>
+                </tr>
+                <tr>
+                    <th>Internal - Casuarina</th>
+                    <td>{% if project.cas %}Available{% else %}Unavailable{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>Internal - Sydney</th>
+                    <td>{% if project.syd %}Available{% else %}Unavailable{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>External</th>
+                    <td>{% if project.ext %}Available{% else %}Unavailable{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>Chemical Engineering</th>
+                    <td>{% if project.chem %}Available{% else %}Unavailable{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>Civil and Structural Engineering</th>
+                    <td>{% if project.civil %}Available{% else %}Unavailable{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>Electrical and Electronics Engineering</th>
+                    <td>{% if project.eee %}Available{% else %}Unavailable{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>Mechanical Engineering</th>
+                    <td>{% if project.mech %}Available{% else %}Unavailable{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>Computer Science</th>
+                    <td>{% if project.cs %}Available{% else %}Unavailable{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>Cyber Security</th>
+                    <td>{% if project.cyber %}Available{% else %}Unavailable{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>Data Science</th>
+                    <td>{% if project.datasc %}Available{% else %}Unavailable{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>Information Systems and Data Science</th>
+                    <td>{% if project.infosys %}Available{% else %}Unavailable{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>Software Engineering</th>
+                    <td>{% if project.seng %}Available{% else %}Unavailable{% endif %}</td>
+                </tr>
+            </tbody>
+        </table>
+    {% else %}
+        <h4 style="color:red">Invalid thesis topic. Record does Unavailablet exist.</h4>
+    {% endif %}
+
+{% endblock %}

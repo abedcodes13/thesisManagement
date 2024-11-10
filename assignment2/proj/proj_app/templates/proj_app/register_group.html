@@ -1,0 +1,18 @@
+{% extends "proj_app/site_base.html" %}
+
+
+{% block page_title %}
+  Register Group
+{% endblock %}
+
+{% block page_heading %}
+  <h1>Register Group</h1>
+{% endblock %}
+
+{% block main_body %}
+    <form method="post"></form>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Register Group"></button>    
+      </form>
+{% endblock %}

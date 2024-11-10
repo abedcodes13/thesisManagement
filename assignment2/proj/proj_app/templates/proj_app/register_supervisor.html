@@ -1,0 +1,33 @@
+{% extends "proj_app/site_base.html" %}
+
+
+{% block page_title %}
+  Add Supervisor
+{% endblock %}
+
+{% block page_heading %}
+  <h1>Add Supervisor</h1>
+{% endblock %}
+
+{% block main_body %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Register</button>
+    </form>
+{% endblock %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register Supervisor</title>
+</head>
+<body>
+    <h2>Register Supervisor</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>

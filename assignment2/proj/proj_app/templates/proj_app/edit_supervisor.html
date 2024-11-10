@@ -1,0 +1,21 @@
+{% extends "proj_app/site_base.html" %}
+
+
+{% block page_title %}
+  Edit Supervisor
+{% endblock %}
+
+{% block page_heading %}
+  <h1>Edit Supervisor</h1>
+{% endblock %}
+
+{% block main_body %}
+    <form action="#" method="post" novalidate>
+      {% csrf_token %}
+      <table>
+        {{ myform.as_table }}
+      </table>
+      <input type="submit" name="edit" value="Edit Supervisor">
+      <input type="submit" name="delete" value="Delete Supervisor">
+    </form>
+{% endblock %}
