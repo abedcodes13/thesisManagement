@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This project introduces an interactive web application designed to improve thesis project management for Charles Darwin University (CDU) Master of Information Technology students, thesis supervisors, and Unit Coordinators. Using Django, this application will streamline workflows, reduce errors, and enhance communication for thesis topic management, student-supervisor agreements, and project tracking.
+This project introduces an interactive web application designed to improve thesis project management for Charles Darwin University (CDU) students, thesis supervisors, and Unit Coordinators. Using Django, this application will streamline workflows, reduce errors, and enhance communication for thesis topic management, student-supervisor agreements, and project tracking.
 
 ## Current System Overview
 
