@@ -1,0 +1,25 @@
+{% extends "proj_app/site_base.html" %}
+
+{% block page_title %}
+    Apply for Topic
+{% endblock %}
+
+{% block page_heading %}
+  <h1>Apply for Topic: {{ topic.title }}</h1>
+{% endblock %}
+
+{% block main_body %}
+    
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add</button>
+    </form>
+    {% if errors %}
+        <ul>
+            {% for error in errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

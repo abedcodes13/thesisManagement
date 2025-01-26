@@ -1,0 +1,53 @@
+{% extends "proj_app/site_base.html" %}
+
+{% block page_title %}
+    Review Removal Requests
+{% endblock %}
+
+{% block page_heading %}
+  <h1>Review Removal Requests</h1>
+{% endblock %}
+
+{% block main_body %}
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for topic in topics %}
+                <tr>
+                    <td>{{ topic.title }}</td>
+                    <td>{{ topic.description }}</td>
+                    <td><a href="{% url 'approve_removal' topic.id %}">Approve Removal</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+
+
+<!-- {% extends "proj_app/site_base.html" %}
+
+{% block page_title %}
+    Review Removal Requests
+{% endblock %}
+
+{% block page_heading %}
+  <h1>Review Removal Requests</h1>
+{% endblock %}
+
+{% block main_body %}
+    <ul>
+        {% for topic in topics %}
+            <li>
+                {{ topic.title }} - {{ topic.description }}
+                <a href="{% url 'approve_removal' topic.id %}">Approve Removal</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %} -->

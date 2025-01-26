@@ -52,14 +52,15 @@ nav {
   
   nav li {
     display: inline-block; /* Display list items inline */
-    margin-right: 30px; /* Add space between links */
-    margin-left:30px;
+    margin-right: 20px; /* Add space between links */
+    margin-left:20px;
+    margin-bottom: 0px;
   }
   
   nav a {
     text-decoration: none; /* Remove underline from links */
     color: #fff; /* Set the color of the link text */
-    font-size: 20px;
+    font-size: 120%;
     font-family:'Times New Roman', Times, serif;
   }
   
@@ -68,8 +69,71 @@ nav {
 }
 
 
+
+
 main {
-    padding: 20px;
+    padding: 30px 40px;
+    
+
+    .admin{
+        font-size: 120%
+
+    }
+
+    button{
+        height: 40px;
+        width: 75px;
+        font-size: 90%;
+        background-color: #093482;
+        color: white;
+        border: none;
+        border-radius: 4px;
+    }
+    button:hover {
+        background-color: #3C6DC5;
+    }
+    h1{
+        margin-left: 0px;
+    }
+
+    label{
+        display: block;
+        width: 200px;
+        margin-bottom: 5px;
+    }
+
+    li{
+        font-size: 80%;
+    }
+
+}
+
+.errorlist{
+    color:red
+}
+.helptext{
+    font-size: 85%;
+    padding-left: 40px;
+    font-weight: bold;
+}
+
+.actionform{
+    display: grid;
+    grid-template-columns: repeat(12,minmax(0, 1fr));
+    gap: 20px;
+
+
+}  
+
+.btnleft{
+    /* margin-left: 10px; */
+    grid-column: 10/span 1;
+    
+}
+
+.btnright{
+    grid-column: 11/span 1;
+    
 }
 
 section {

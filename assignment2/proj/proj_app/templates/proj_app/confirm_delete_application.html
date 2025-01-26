@@ -1,0 +1,17 @@
+{% extends "proj_app/site_base.html" %}
+
+{% block page_title %}
+    Confirm Delete Application
+{% endblock %}
+{% block page_heading %}
+    <h1>Confirm Delete Application</h1>
+{% endblock %}
+
+{% block main_body %}
+    <p>Are you sure you want to delete the application for topic "{{ application.topicID.title }}" by group "{{ application.groupID.name }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Yes, delete</button>
+        <a href="{% url 'list_applications' %}">No, go back</a>
+    </form>
+{% endblock %}

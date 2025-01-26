@@ -1,0 +1,51 @@
+
+
+
+{% extends "proj_app/site_base.html" %}
+
+{% block page_title %}
+    List of Applications
+{% endblock %}
+
+{% block page_heading %}
+    <h1>List of Applications</h1>
+{% endblock %}
+
+{% block main_body %}
+<table>
+    <thead>
+        <tr>
+            <th>Group</th>
+            <th>Topic</th>
+            <th>Topic Number</th>
+            <th>Status</th>
+            {% if request.user.user_type == 'supervisor' or request.user.user_type == 'student' %}
+                <th>Actions</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for application in applications %}
+            <tr>
+                <td>{{ application.groupID.name }}</td>
+                <td>{{ application.topicID.title }}</td>
+                <td>{{ application.topicID.topicID }}</td>
+                <td>{{ application.status }}</td>
+                {% if request.user.user_type == 'supervisor' and request.user == application.topicID.supervisor.user and application.status == 'Pending' %}
+                    <td>
+                        <a href="{% url 'approve_application' application.pk %}">Approve</a> |
+                        <a href="{% url 'reject_application' application.pk %}">Reject</a>
+                    </td>
+                {% elif request.user.user_type == 'student' %}
+                    <td>
+                        <form method="post" action="{% url 'delete_application' application.pk %}">
+                            {% csrf_token %}
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

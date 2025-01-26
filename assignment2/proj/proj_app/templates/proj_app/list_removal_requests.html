@@ -1,0 +1,38 @@
+{% extends "proj_app/site_base.html" %}
+
+{% block page_title %}
+  Removal Requests
+{% endblock %}
+{% block page_heading %}
+    <h1>Removal Requests</h1>
+{% endblock %}
+
+{% block main_body %}
+    <table>
+        <thead>
+            <tr>
+                <th>Topic Number</th>
+                <th>Title</th>
+                <th>Supervisor</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for topic in topics %}
+                <tr>
+                    <td>{{ topic.topicID }}</td>
+                    <td>{{ topic.title }}</td>
+                    <td>{{ topic.supervisor.name }}</td>
+                    {% if user.user_type == 'unit_coordinator' %}
+                        <td>
+                            <a href="{% url 'approve_removal' topic.topicID %}">Approve</a> |
+                            <a href="{% url 'reject_removal' topic.topicID %}">Reject</a>
+                        </td>
+                    {% elif user.user_type == 'supervisor' %}
+                        <td>Pending</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

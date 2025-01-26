@@ -1,0 +1,37 @@
+{% extends "proj_app/site_base.html" %}
+
+{% block page_title %}
+  Review Topic Changes
+{% endblock %}
+
+{% block page_heading %}
+  <h1>Review Topic Changes</h1>
+{% endblock %}
+
+{% block main_body %}
+    <table>
+        <thead>
+            <tr>
+                <th>Topic Number</th>
+                <th>Title</th>
+                <th>Brief Description</th>
+                <th>Supervisor</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for topic in topics %}
+                <tr>
+                    <td>{{ topic.topicID }}</td>
+                    <td>{{ topic.title }}</td>
+                    <td>{{ topic.description }}</td>
+                    <td>{{ topic.supervisor }}</td>
+                    <td>
+                        <a href="{% url 'approve_topic_changes' topic.topicID %}">Approve</a> |
+                        <a href="{% url 'reject_topic_changes' topic.topicID %}">Reject</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

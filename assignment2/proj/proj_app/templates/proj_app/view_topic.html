@@ -1,0 +1,99 @@
+{% extends "proj_app/site_base.html" %}
+
+{% block page_title %}
+    Topic Details
+{% endblock %}
+{% block page_heading %}
+    <h1>Topic Details</h1>
+{% endblock %}
+
+{% block main_body %}
+    <table>
+        <tr>
+            <th>Topic ID</th>
+            <td>{{ topic.topicID }}</td>
+        </tr>
+        <tr>
+            <th>Title</th>
+            <td>{{ topic.title }}</td>
+        </tr>
+        <tr>
+            <th>Supervisor</th>
+            <td>{{ topic.supervisor }}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ topic.description }}</td>
+        </tr>
+        <tr>
+            <th>Brief Description</th>
+            <td>{{ topic.brief_description }}</td>
+        </tr>
+        <tr>
+            <th>Category</th>
+            <td>{{ topic.get_category_display }}</td>
+        </tr>
+        <tr>
+            <th>Group Limit</th>
+            <td>{{ topic.group_limit }}</td>
+        </tr>
+        <tr>
+            <th>Casuarina</th>
+            <td>{{ topic.cas|yesno:"Available,Unavailable" }}</td>
+        </tr>
+        <tr>
+            <th>Sydney</th>
+            <td>{{ topic.syd|yesno:"Available,Unavailable" }}</td>
+        </tr>
+        <tr>
+            <th>External</th>
+            <td>{{ topic.external|yesno:"Available,Unavailable" }}</td>
+        </tr>
+        <tr>
+            <th>Chemical Engineering</th>
+            <td>{{ topic.chem_eng|yesno:"Available,Unavailable" }}</td>
+        </tr>
+        <tr>
+            <th>Civil and Structural Engineering</th>
+            <td>{{ topic.cns_eng|yesno:"Available,Unavailable" }}</td>
+        </tr>
+        <tr>
+            <th>Electrical and Electronics Engineering</th>
+            <td>{{ topic.eee|yesno:"Available,Unavailable" }}</td>
+        </tr>
+        <tr>
+            <th>Mechanical Engineering</th>
+            <td>{{ topic.mech_eng|yesno:"Available,Unavailable" }}</td>
+        </tr>
+        <tr>
+            <th>Computer Science</th>
+            <td>{{ topic.cs|yesno:"Available,Unavailable" }}</td>
+        </tr>
+        <tr>
+            <th>Cyber Security</th>
+            <td>{{ topic.cyb_sec|yesno:"Available,Unavailable" }}</td>
+        </tr>
+        <tr>
+            <th>Data Science</th>
+            <td>{{ topic.data_sc|yesno:"Available,Unavailable" }}</td>
+        </tr>
+        <tr>
+            <th>Information Systems and Data Science</th>
+            <td>{{ topic.is_ds|yesno:"Available,Unavailable" }}</td>
+        </tr>
+        <tr>
+            <th>Software Engineering</th>
+            <td>{{ topic.seng|yesno:"Available,Unavailable" }}</td>
+        </tr>
+    </table>
+    <div class="actionform">
+        <form  class="btnleft" action="{% url 'list_topics' %}">
+            <button class="btnleft" type="submit" class="btn btn-secondary">Back</button>
+        </form>
+        {% if user.is_authenticated and user.user_type == 'student' %}
+            <form class = "btnright" action="{% url 'apply_for_topic' topic.topicID %}">
+                <button type="submit" class="btn btn-primary">Apply</button>
+            </form>
+        {% endif %}
+    </div>
+{% endblock %}

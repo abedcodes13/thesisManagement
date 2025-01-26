@@ -1,18 +1,18 @@
 {% extends "proj_app/site_base.html" %}
 
-
 {% block page_title %}
-  Login
+ Edit Topic
 {% endblock %}
 
 {% block page_heading %}
-  <h1>Login</h1>
+  <h1>Edit Topic</h1>
 {% endblock %}
 
 {% block main_body %}
+    <h1>Are you sure you want to delete "{{ topic.title }}"?</h1>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Login</button>
+        <button type="submit">Confirm</button>
     </form>
+    <a href="{% url 'list_topics' %}">Cancel</a>
 {% endblock %}

@@ -9,14 +9,13 @@
 {% endblock %}
 
 {% block main_body %}
-<section>  
+ 
   <p>
     <ul>
       {% for admin in admin_list %}
-        <li>{{ admin.name|upper }} (s{{admin.id}})</li>
+        <li class="admin">{{ admin.name|upper }} (s{{admin.id}})</li>
       {% endfor %}
     </ul>
   </p>
-</section>
 
 {% endblock %}

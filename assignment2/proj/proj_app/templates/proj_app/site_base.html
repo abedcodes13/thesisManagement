@@ -15,17 +15,40 @@
     <a href="{% url 'homepage' %}"><img src="{% static 'proj_app/images/logo.png' %}" alt="Logo"></a>
     <ul>
       <li><a href="{% url 'homepage' %}">Home</a></li>
-
+      <li><a href="{% url 'about' %}">About</a></li>
+      <li><a href="{% url 'list_topics' %}">Topics</a></li>
+      {% if request.user.user_type == 'unit_coordinator' %}
+        <li><a href="{% url 'review_topics' %}">Review Topics</a></li>
+        <li><a href="{% url 'list_removal_requests' %}">Topic Removal Requests</a></li>
+        <li><a href="{% url 'list_pending_topics' %}">Topic Modify Requests</a></li>
+      {% elif request.user.user_type == 'supervisor' %}  
+        <li><a href="{% url 'topic_create' %}">Add Topic</a></li>
+        <li><a href="{% url 'list_applications' %}">Applications</a></li>
+      {% elif request.user.user_type == 'student' %}
+        <li><a href="{% url 'list_groups' %}">Groups</a></li>
+        <li><a href="{% url 'list_applications' %}">Applications</a></li>
+      {% elif request.user.is_superuser %}
+        <li><a href="{% url 'register_unit_coordinator' %}">Unit Coordinator Registration</a></li>
+      {% endif %}
+      <li><a href="{% url 'register_supervisor' %}">Supervisor Registration</a></li>
+      <li><a href="{% url 'register_student' %}">Student Registration</a></li>
+      <li><a href="{% url 'register_group' %}">Group Registration</a></li>
+      {% if request.user.is_authenticated %}
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+      {% else %}
+        <li><a href="{% url 'login' %}">Login</a></li>
+      {% endif %}
     </ul>
   </nav>
 
-  <div>
+  <main>
     {% block page_heading %}<h1>ERROR: No Heading Supplied</h1>{% endblock %}
 
     {% block main_body %}{% endblock %}
-    <footer>
-      <p>Group 23 - HIT237</p>
-    </footer>
-  </div>
+  </main>
+  <footer>
+    <p>Group 23A - HIT237</p>
+  </footer>
+  
 </body>
 </html>

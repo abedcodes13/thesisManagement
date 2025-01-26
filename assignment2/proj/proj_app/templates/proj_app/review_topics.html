@@ -1,0 +1,36 @@
+{% extends "proj_app/site_base.html" %}
+
+{% block page_title %}
+    Review Topics
+{% endblock %}
+
+{% block page_heading %}
+  <h1>Review Topics</h1>
+{% endblock %}
+
+{% block main_body %}
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Supervisor</th>
+                <th>Group Limit</th>
+                <th colspan="2">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for topic in topics %}
+                <tr>
+                    <td>{{ topic.title }}</td>
+                    <td>{{ topic.description }}</td>
+                    <td>{{ topic.supervisor }}</td>
+                    <td>{{ topic.group_limit }}</td>
+                    
+                    <td><a href="{% url 'approve_topic' topic.topicID %}">Approve</a></td>
+                    <td><a href="{% url 'reject_topic' topic.topicID %}">Reject</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

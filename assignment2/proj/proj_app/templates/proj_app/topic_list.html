@@ -1,0 +1,72 @@
+{% extends "proj_app/site_base.html" %}
+
+{% block page_title %}
+  Project List
+{% endblock %}
+{% block page_heading %}
+    <h1>Project List</h1>
+{% endblock %}
+
+{% block main_body %}
+
+    <table>
+        <thead>
+            <tr>
+                <th>Topic Number</th>
+                <th>Title</th>
+                <th>Brief Description</th>
+                <th>Supervisor</th>
+                <th>Group Limit</th>
+                <th>Groups Enrolled</th>
+                <th>Status</th>
+                {% if user.is_authenticated %}
+                    <th colspan="3">Actions</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for topic in topics %}
+                <tr>
+                    <td>{{ topic.topicID }}</td>
+                    <td>{{ topic.title }}</td>
+                    <td>{{ topic.brief_description }}</td>
+                    <td>{{ topic.supervisor }}</td>
+                    <td>{{ topic.group_limit }}</td>
+                    <td>{{ topic.current_group_count }}</td>
+                    <td>
+                        {% if user.is_authenticated and user.user_type == 'supervisor' and topic.supervisor.user == user %}
+                        
+                            {% if topic.pending_approval %}
+                                Pending Approval
+                            {% elif topic.removal_requested %}
+                                Removal Requested
+                            {% else %}
+                                Approved
+                            {% endif %}
+                        
+                        {% else %}
+                            {% if topic.current_group_count >= topic.group_limit %}
+                                Group Limit Reached
+                            {% else %}
+                                Application Open
+                            {% endif %}
+
+                        {% endif %}
+                    </td>
+                    <td><a href="{% url 'view_topic' topic.topicID %}">View</a></td>
+                    {% if user.is_authenticated and user.user_type == 'supervisor' and topic.supervisor.user == user %}
+                        <td> <a href="{% url 'edit_topic' topic.topicID|add:0 %}">Edit</a> </td>
+                        {% if topic.removal_requested %}
+                            <td>Removal Requested</td>
+                        {% else %}
+                            <td>  <a href="{% url 'request_removal' topic.topicID|add:0 %}">Request Removal</a> </td>
+                        {% endif %}
+                    {% elif user.is_authenticated and request.user.user_type == 'student' %}
+                        <td> <a href="{% url 'apply_for_topic' topic.topicID|add:0 %}">Apply</a> </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+a

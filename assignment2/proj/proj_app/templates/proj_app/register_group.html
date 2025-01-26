@@ -10,9 +10,11 @@
 {% endblock %}
 
 {% block main_body %}
-    <form method="post"></form>
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Register Group"></button>    
-      </form>
+
+  <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Register</button>    
+  </form>
+
 {% endblock %}
